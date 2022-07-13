@@ -17,9 +17,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "tailwindcss": "^3.1.5"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.5.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mysql2": "^2.1.0",
