@@ -7,22 +7,23 @@
     <title>NFT Collections Home Page</title>
     <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet" /> -->
-    <link rel="stylesheet" href="../public/css/tailwind.output.css" />
+    {{!-- <link rel="stylesheet" href="/css/tailwind.output.css" /> --}}
+    {{! SWITCH BACK TO LINKED CSS BEFORE POSTING }}
+    <script src='https://cdn.tailwindcss.com'></script>
     <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
-    <script src="../public/js/init-alpine.js"></script>
+    <script src="/js/init-alpine.js"></script>
 </head>
 
-  <body
-    class='bg-white text-black antialiased dark:bg-gray-900 dark:text-white'
-  >
-
-  <div class="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
+<body>
+    <div class="relative bg-white overflow-hidden h-screen dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto h-full">
+            <div class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:w-full lg:pb-28 xl:pb-32 h-full">
     
-{{> header}}
+{{> home-header}}
 
     {{{body}}}
 
-{{> footer}}
+{{!-- {{> home-footer}} --}}
 
 </div>
 

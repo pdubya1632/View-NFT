@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
 app.use(routes);
 
@@ -23,8 +24,8 @@ app.engine(
 );
 
 // sync sequelize models to the database, then turn on the server
-sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () =>
-    console.log(`Now listening at http://localhost:${PORT}`)
-  );
-});
+// sequelize.sync({ force: false }).then(() => {
+app.listen(PORT, () =>
+  console.log(`Now listening at http://localhost:${PORT}`)
+);
+// });
