@@ -27,6 +27,12 @@ router.get('/dashboard', (req, res) => {
   res.render('dashboard-main', { layout: 'dashboard' });
 });
 
+/* nft detail dashboard view */
+/* route should be changed to /dashboard/nft/:id */
+router.get('/dashboard/nft/', (req, res) => {
+  res.render('nftDetail-main', { layout: 'dashboard' });
+});
+
 router.use('/api', apiRoutes);
 
 router.use((req, res) => {
