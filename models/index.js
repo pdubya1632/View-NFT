@@ -1,42 +1,37 @@
-// import models
-const Product = require('./Product');
-const Category = require('./Category');
-const Tag = require('./Tag');
-const ProductTag = require('./ProductTag');
+// Import all the models
+const User = require("./User");
+const Gallery= require("./Gallery");
+const Comment = require("./Comment");
+const Nft = require("./Nft")
 
-// Products belongsTo Category
-Product.belongsTo(Category, {
-  foreignKey: 'category_id',
+//set up relationships
+User.hasMany(this.Gallery, {
+  foreignKey: "user_id",
+});
+Gallery.belongsTo(User, {
+  foreignKey: "user_id",
+});
+Gallery.hasMany(this.Nft, {
+  foreignKey: "nft_id",
+});
+Nft.belongsTo(Gallery, {
+  foreignKey: "nft_id",
+});
+//associations for the commments
+Comment.belongsTo(User, {
+  foreignKey: "user_id",
 });
 
-// Categories have many Products
-Category.hasMany(Product, {
-  foreignKey: 'category_id',
+Comment.belongsTo(Gallery, {
+  foreignKey: "post_id",
 });
 
-// Products belongToMany Tags (through ProductTag)
-Product.belongsToMany(Tag, {
-through: {
-  model: ProductTag,
-// foreignKey: 'product_id',
-unique: false
-},
-as: 'tag_info'
+User.hasMany(Comment, {
+  foreignKey: "user_id",
 });
 
-// Tags belongToMany Products (through ProductTag)
-Tag.belongsToMany(Product, {
-  through: {
-   model: ProductTag,
-  // foreignKey: 'tag_id' ,
-  unique: false
-},
- as: 'product_info'
+Post.hasMany(Comment, {
+  foreignKey: "post_id",
 });
 
-module.exports = {
-  Product,
-  Category,
-  Tag,
-  ProductTag,
-};
+module.exports = { User, Gallery, Comment,Nft };
