@@ -45,7 +45,7 @@ router.get("/", (req, res) => {
           attributes: ["id", "comment_text", "gallery_id"],
         },
       ],
-    }) //include the posts and comments of this user
+    }) //include the galleries and comments of this user
       .then((dbUserData) => {
         if (!dbUserData) {
           res.status(404).json({ message: "No User found with this id" });
