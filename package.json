@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "@alch/alchemy-sdk": "^1.0.8"
+    "@alch/alchemy-sdk": "^1.0.8",
+    "@alch/alchemy-web3": "^1.4.6",
+    "dotenv": "^16.0.1"
   },
   "type": "module"
 }
