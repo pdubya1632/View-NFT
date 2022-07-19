@@ -1,0 +1,62 @@
+<html :class="{ 'theme-dark': dark }" x-data='data()' lang='en'>
+
+  <head>
+    <meta charset='UTF-8' />
+    <meta
+      name='viewport'
+      content='width=device-width, initial-scale=1.0'
+    />
+    <title>Dashboard</title>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" /> -->
+    <link rel='stylesheet' href='/css/tailwind.output.css' />
+    <script
+      defer
+      src='https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js'
+    ></script>
+    <script src='/js/init-alpine.js'></script>
+  </head>
+
+  <body>
+    <div
+      class='flex h-screen bg-gray-50 dark:bg-gray-900'
+      :class="{ 'overflow-hidden': isSideMenuOpen }"
+    >
+      
+      {{> dashboard-nav}}
+      
+      {{> dashboard-header}}
+
+      {{{ body }}}
+
+      {{!-- </div> --}}
+    </div>
+
+    <script>
+      const fetchNFTs = async (e) => {
+        console.log("fetching nfts");
+          const api_key = "A8A1Oo_UTB9IN5oNHfAc2tAxdR4UVwfM"
+          const baseURL = `https://eth-mainnet.alchemyapi.io/v2/${api_key}/getNFTs/`;
+          const address = e.value;
+          const requestOptions = {
+              method: 'GET'
+          };
+        console.log("fetching nfts by address")
+          const fetchURL = `${baseURL}?owner=${address}`;
+          const nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
+          const ownedNfts = nfts.ownedNfts;
+          const filterOwned = ownedNfts.map(item => {
+              const container = {};
+              container.title = item.title;
+              container.description = item.description;
+              container.url = item.media[0].gateway;
+              return container;
+          })
+      
+        if (nfts) {
+          console.log("nfts:", filterOwned) 
+        }
+      }
+    </script>
+  </body>
+
+</html>
