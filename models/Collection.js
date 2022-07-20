@@ -15,17 +15,7 @@ Collection.init(
       autoIncrement: true,
     },
 
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-
-    url: {
+    address: {
       type: DataTypes.STRING,
       allowNull: false,
     },

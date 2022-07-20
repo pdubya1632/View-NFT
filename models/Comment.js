@@ -1,6 +1,6 @@
 // set up imports
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
 //Set up object
 class Comment extends Model {}
@@ -23,17 +23,17 @@ Comment.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "user",
-        key: "id",
+        model: 'user',
+        key: 'id',
       },
     },
-    post_id: {
-      //the id of the nftGallery it belongs to
+    nft_id: {
+      // the id of the nft it belongs to
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "gallery",
-        key: "id",
+        model: 'nft',
+        key: 'id',
       },
     },
   },
@@ -41,7 +41,7 @@ Comment.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "comment",
+    modelName: 'comment',
   }
 );
 //export
