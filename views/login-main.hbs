@@ -10,12 +10,7 @@
         class='flex items-center justify-center p-6 sm:p-12 md:w-1/2'
       >
 
-        <form
-          id='register'
-          class='w-full'
-          x-data='register'
-          action=''
-        >
+        <form id='login' class='w-full' x-data='login' action=''>
           <h1
             class='text-xl font-semibold text-gray-700 dark:text-gray-200'
           >
@@ -62,8 +57,10 @@
             </a>
           </div>
           <input
+            id='loginBtn'
+            @click='loginFormHandler'
             type='submit'
-            class='block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple'
+            class='cursor-pointer block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple'
           />
         </form>
 
