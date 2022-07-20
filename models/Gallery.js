@@ -1,12 +1,12 @@
 /// set up imports
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
 //set up the post object
 class Gallery extends Model {}
 
 //set up the init function
-Post.init(
+Gallery.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -14,7 +14,7 @@ Post.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    
+
     body: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -23,8 +23,8 @@ Post.init(
     nft_name: {
       type: DataTypes.INTEGER,
       references: {
-        model: "nft",
-        key: "name",
+        model: 'nft',
+        key: 'name',
       },
     },
   },
@@ -32,7 +32,7 @@ Post.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "gallery",
+    modelName: 'gallery',
   }
 );
 //export the post object
