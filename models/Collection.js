@@ -1,12 +1,12 @@
 // set up imports
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
 //set up the post object
-class Gallery extends Model {}
+class Collection extends Model {}
 
 //set up the init function
-Gallery.init(
+Collection.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -14,17 +14,28 @@ Gallery.init(
       primaryKey: true,
       autoIncrement: true,
     },
-  
-    body: {
+
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+
+    url: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
     // Add the reference to the user id that made it
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "user",
-        key: "id",
+        model: 'user',
+        key: 'id',
       },
     },
   },
@@ -32,8 +43,8 @@ Gallery.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "gallery",
+    modelName: 'collection',
   }
 );
 //export the post object
-module.exports = Gallery;
+module.exports = Collection;

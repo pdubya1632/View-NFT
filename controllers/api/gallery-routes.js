@@ -1,14 +1,15 @@
-const router = require("express").Router();
-const { User, Gallery, Comment,Nft } = require("../../models");
+const router = require('express').Router();
+const { User, Gallery, Comment, Nft } = require('../../models');
+
 //get all the galleries
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   Gallery.findAll({
-    attributes: ["id", "title", "body", "user_id"],
+    attributes: ['id', 'title', 'body', 'user_id'],
     include: [
       {
         model: Comment,
-        as: "comments",
-        attributes: ["id", "comment_text", "user_id"],
+        as: 'comments',
+        attributes: ['id', 'comment_text', 'user_id'],
       },
     ],
   })
@@ -22,23 +23,25 @@ router.get("/", (req, res) => {
 });
 
 //get gallery by id
-router.get("/:id", (req, res) => {
+router.get('/:id', (req, res) => {
   Gallery.findOne({
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "title", "body", "user_id"],
+    attributes: ['id', 'title', 'body', 'user_id'],
     include: [
       {
         model: Comment,
-        as: "comments",
-        attributes: ["id", "comment_text", "user_id"],
+        as: 'comments',
+        attributes: ['id', 'comment_text', 'user_id'],
       },
     ],
   }) //include the galleries and comments of this user
     .then((dbGalleryData) => {
       if (!dbGalleryData) {
-        res.status(404).json({ message: "No Gallery found with this id" });
+        res
+          .status(404)
+          .json({ message: 'No Gallery found with this id' });
         return;
       }
       res.json(dbGalleryData);
@@ -50,7 +53,7 @@ router.get("/:id", (req, res) => {
 });
 
 //add gallery
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
   // This will make a new gallery
   // Expects Title, body, user_id
   Gallery.create({
@@ -67,8 +70,8 @@ router.post("/", (req, res) => {
     });
 });
 //update gallery
-router.put("/:id", (req, res) => {
-  console.log("The id is ", req.params.id);
+router.put('/:id', (req, res) => {
+  console.log('The id is ', req.params.id);
   Post.update(
     {
       body: req.body.body,
@@ -81,7 +84,9 @@ router.put("/:id", (req, res) => {
   )
     .then((dbGalleryData) => {
       if (!dbGalleryData) {
-        res.status(404).json({ message: "No Gallery found with this id" });
+        res
+          .status(404)
+          .json({ message: 'No Gallery found with this id' });
         return;
       }
       res.json(dbGalleryData);
@@ -92,7 +97,7 @@ router.put("/:id", (req, res) => {
     });
 });
 //remove Gallery
-router.delete("/:id", (req, res) => {
+router.delete('/:id', (req, res) => {
   Gallery.destroy({
     where: {
       id: req.params.id,
@@ -100,7 +105,9 @@ router.delete("/:id", (req, res) => {
   })
     .then((dbGalleryData) => {
       if (!dbGalleryData) {
-        res.status(404).json({ message: "No Gallery found with this id" });
+        res
+          .status(404)
+          .json({ message: 'No Gallery found with this id' });
         return;
       }
       res.json(dbGalleryData);
