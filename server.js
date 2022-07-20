@@ -50,8 +50,6 @@ app.engine(
   })
 );
 
-app.use(express.static('public'));
-
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
     console.log(`Now listening on http://localhost:${PORT}`)
