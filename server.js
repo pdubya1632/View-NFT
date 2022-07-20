@@ -1,12 +1,16 @@
 const express = require('express');
 const path = require('path');
+
 //paths
 const controller = require('./controllers');
+
 //handlebars
 const exphbs = require('express-handlebars');
-//Sequelize
+
+//sequelize
 const sequelize = require('./config/connection');
-//Session
+
+//session
 const session = require('express-session');
 const SequlizeStore = require('connect-session-sequelize')(
   session.Store
@@ -35,12 +39,21 @@ app.use(session(sess));
 //use controllers
 app.use('/', controller);
 
-//set handlebars as render engine
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
+app.set('view engine', 'hbs');
+
+app.engine(
+  'hbs',
+  exphbs.engine({
+    layoutsDir: __dirname + '/views/layouts',
+    partialsDir: __dirname + '/views/partials/',
+    extname: 'hbs',
+  })
+);
+
+app.use(express.static('public'));
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
-    console.log(`Now listening on port ${PORT}`)
+    console.log(`Now listening on http://localhost:${PORT}`)
   );
 });
