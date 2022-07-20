@@ -67,7 +67,7 @@ async function loginFormHandler(event) {
   }
   //Add event listeners to the buttons
   document
-    .querySelector("#login-btn")
+    .querySelector("#loginBtn")
     .addEventListener("click", loginFormHandler);
   
   document
