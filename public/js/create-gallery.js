@@ -18,7 +18,7 @@ async function createGalleryHandler(event) {
   
       //check if all good
       if (response.ok) {
-        document.location.replace("/dashboard"); //replace with post id
+        document.location.replace("/dashboard"); //replace with gallery id
       } else {
         alert(response.statusText); // find better way to do this
       }
