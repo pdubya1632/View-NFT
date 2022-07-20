@@ -51,6 +51,9 @@
             name='username'
             id='username'
             type='text'
+            x-bind:class="{'invalid':username.errorMessage && username.blurred}"
+            @blur='blur'
+            @input='input'
             data-rules='["required"]'
           />
 
