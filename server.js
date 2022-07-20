@@ -45,7 +45,7 @@ app.engine(
   'hbs',
   exphbs.engine({
     layoutsDir: __dirname + '/views/layouts',
-    partialsDir: __dirname + '/views/partials/',
+    partialsDir: __dirname + '/views/partials',
     extname: 'hbs',
   })
 );
