@@ -3,7 +3,7 @@ const { User, Nft, Comment } = require("../../models");
 //get all the Galleries
 router.get("/", (req, res) => {
   Nft.findAll({
-    attributes: ["id","name", "description", "image", "user_id"],
+    attributes: ["id","title", "description", "image_url", "owner"],
     include: [
       {
         model: Comment,
@@ -27,7 +27,7 @@ router.get("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "name","description", "image", "user_id"],
+    attributes: ["id", "title","description", "image_url", "user_id"],
     include: [
       {
         model: Comment,
