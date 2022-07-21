@@ -1,39 +1,36 @@
 // This is where we will set up relationships for the models
+
 // Import all the models
-const User = require("./User");
-const Gallery= require("./Gallery");
-const Comment = require("./Comment");
-const Nft = require("./Nft")
+const User = require('./User');
+const Nft = require('./Nft');
+const Comment = require('./Comment');
 
-//set up relationships
-User.hasMany(Gallery,{as: 'galleries',
-  foreignKey: "user_id"
-})
-Gallery.belongsTo(User, {
-  foreignKey: "user_id"
+// associations
+
+User.hasMany(Nft, {
+  as: 'nft',
+  foreignKey: 'owner',
 });
-Gallery.hasMany(Nft, {
-  as: "nfts",
-  foreignKey: "nft_id",
+
+Nft.belongsTo(User, {
+  foreignKey: 'nft_id',
 });
-Nft.belongsTo(Gallery, {
-  foreignKey: "nft_id",
-});
-//associations for the commments
+
+// comment associations
 Comment.belongsTo(User, {
-  foreignKey: "user_id",
+  foreignKey: 'user_id',
 });
 
-Comment.belongsTo(Gallery, {
-  foreignKey: "post_id",
+Comment.belongsTo(Nft, {
+  foreignKey: 'comment_id',
 });
 
 User.hasMany(Comment, {
-  foreignKey: "user_id",
+  foreignKey: 'user_id',
 });
 
-Gallery.hasMany(Comment, {
-  foreignKey: "post_id",
+Nft.hasMany(Comment, {
+  foreignKey: 'comment_id',
 });
 
-module.exports = { User, Gallery, Comment,Nft };
+module.exports = { User, Nft, Comment };

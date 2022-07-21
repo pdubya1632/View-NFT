@@ -1,46 +1,59 @@
 // set up imports
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
 //set up object
-class Nft extends Model{}
+class Nft extends Model {}
 
 Nft.init(
- {
+  {
     id: {
-        type:DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
     },
-    name: {
-        type:DataTypes.STRING,
-        allowNull:false
-
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     description: {
-        type:DataTypes.STRING,
-        allowNull: true,
-
+      type: DataTypes.TEXT,
+      allowNull: true,
     },
-    Image: {
-        type:DataTypes.STRING,
-        allowNull:false,
-
+    image_url: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    user_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: "user",
-            key: "id",
-        },
-    }
- },
- {
+    for_sale: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    floor_price: {
+      type: DataTypes.DECIMAL,
+      allowNull: true,
+    },
+    collection: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    creator: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    owner: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id',
+      },
+    },
+  },
+  {
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "nft"
- }
+    modelName: 'nft',
+  }
 );
 
 module.exports = Nft;

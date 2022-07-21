@@ -6,9 +6,14 @@ const controller = require('./controllers');
 
 //handlebars
 const exphbs = require('express-handlebars');
+// const helpers = require('./utils/helpers');
 
 //sequelize
 const sequelize = require('./config/connection');
+
+//initialize the server
+const app = express();
+const PORT = process.env.PORT || 3001;
 
 //session
 const session = require('express-session');
@@ -19,27 +24,28 @@ const SequlizeStore = require('connect-session-sequelize')(
 //set up the actual session
 const sess = {
   secret: 'super secret secret',
-  cookie: {},
+  cookie: {
+    // Stored in milliseconds (86400 === 1 day)
+    maxAge: 86400,
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequlizeStore({
     db: sequelize,
   }),
 };
-//initialize the server
-const app = express();
-const PORT = process.env.PORT || 3001;
 
-//middlewear
+app.use(session(sess));
+
+//middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session(sess));
 
 //use controllers
 app.use('/', controller);
 
-app.set('view engine', 'hbs');
+// const hbs = exphbs.create({ helpers });
 
 app.engine(
   'hbs',
@@ -49,6 +55,8 @@ app.engine(
     extname: 'hbs',
   })
 );
+
+app.set('view engine', 'hbs');
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>

@@ -4,7 +4,10 @@ const sequelize = require('../config/connection');
 
 /* home view */
 router.get('/', (req, res) => {
-  res.render('home-main', { layout: 'home' });
+  res.render('home-main', {
+    layout: 'home',
+    loggedIn: req.session.loggedIn,
+  });
 });
 
 /* user registration view */
@@ -23,8 +26,6 @@ router.get('/password-reset', (req, res) => {
 router.get('/dashboard/nft/', (req, res) => {
   res.render('nftDetail-main', { layout: 'dashboard' });
 });
-
-
 
 //serve up the single gallery page
 router.get('/viewnft/:id', (req, res) => {
@@ -88,57 +89,6 @@ router.get('/login', (req, res) => {
 router.get('/dashboard', (req, res) => {
   res.render('dashboard-main', { layout: 'dashboard' });
 });
-
-//serve up the dashboard
-// router.get('/dashboard', (req, res) => {
-//   // we need to get all galleries
-//   console.log(req.session.user_id, ' this is the session id');
-//   Gallery.findAll({
-//     where: {
-//       user_id: req.session.user_id,
-//     },
-//     attributes: ['id', 'body', 'user_id'],
-//     include: [
-//       {
-//         model: User,
-//         as: 'user',
-//         attributes: ['username'],
-//       },
-//       {
-//         model: Comment,
-//         as: 'comments',
-//         attributes: ['id', 'comment_text', 'user_id'],
-//         include: [
-//           {
-//             model: User,
-//             as: 'user',
-//             attributes: ['username'],
-//           },
-//         ],
-//       },
-//     ],
-//   })
-//     .then((dbGalleryData) => {
-//       //serialize data
-//       if (!dbgalleryData) {
-//         res.status(404).json({ message: 'No Galleries Available' });
-//         return;
-//       }
-//       const galleries = dbGalleryData.map((gallery) =>
-//         gallery.get({ plain: true })
-//       ); // serialize all the galleries
-//       console.log(galleries);
-//       res.render('dashboard-main', {
-//         galleries,
-//         loggedIn: req.session.loggedIn,
-//         layout: 'dashboard',
-//       });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
 
 router.get('/gallery', (req, res) => {
   res.render('create-gallery', { loggedIn: req.session.loggedIn });

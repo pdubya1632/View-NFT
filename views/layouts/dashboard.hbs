@@ -31,7 +31,8 @@
       {{!-- </div> --}}
     </div>
 
-    <script>
+    {{!-- <script>
+
       const fetchNFTs = async (e) => {
         console.log("fetching nfts");
           const api_key = "A8A1Oo_UTB9IN5oNHfAc2tAxdR4UVwfM"
@@ -56,10 +57,13 @@
           })
       
         if (nfts) {
-          console.log("nfts:", filterOwned) 
+          console.log("nfts:", filterOwned);
+
+          {{!-- User.bulkCreate(filterOwned) --}}
+
         }
       }
-    </script>
+    </script> --}}
   </body>
 
 </html>
