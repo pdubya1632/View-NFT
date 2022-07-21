@@ -1,11 +1,10 @@
 <div class='max-w-7xl mx-auto px-4 py-6 sm:px-6 flex items-center'>
 
-  {{! <nav class='flex w-full items-center justify-between'> }}
   <nav
-    class='flex md:flex-row w-full items-center justify-between md:h-1/2'
+    class='flex md:flex-row md:w-1/2 w-full items-center justify-between md:h-1/2'
   >
     <div>
-      <a class='text-white ml-2 text-2xl font-bold' href='/'>
+      <a class='text-white text-2xl font-bold' href='/'>
         <!-- <img class="h-12 w-auto sm:h-12" src="/public/assets/img/icons/rocket.svg"
                                         alt="site" /> -->
         ViewNFT
@@ -14,7 +13,10 @@
 
     <div>
       {{#if loggedIn}}
-        <button id='logout' class='btn-no-style'>Logout</button>
+        <button
+          id='logout'
+          class='text-purple-600 hover:text-purple-700 underline'
+        >Logout</button>
       {{else}}
         <a
           href='/login'
