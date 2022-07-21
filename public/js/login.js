@@ -58,7 +58,7 @@ async function signupFormHandler(event) {
     });
 
     if (responseTwo.ok) {
-      console.log(response, ' Logged in successfully!');
+      console.log(response, 'Logged in successfully!');
       document.location.replace('/dashboard');
     } else {
       alert(response.statusText);
