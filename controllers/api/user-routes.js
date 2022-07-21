@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
         {
           model: Nft,
           as: "nfts",
-          attributes: ["name", "description", "image"],
+          attributes: ["title", "description", "image_url"],
         },
         {
           model: Comment,
@@ -37,7 +37,7 @@ router.get("/", (req, res) => {
         {
           model: Nft,
           as: "nfts",
-          attributes: ["name", "dexription", "image"],
+          attributes: ["id","title", "description", "image_url"],
         },
         {
           model: Comment,
