@@ -39,18 +39,13 @@ const fetchNFTs = async (e) => {
   });
 
   if (filterNfts) {
-    console.log(
-      JSON.stringify({
-        filterNfts,
-      })
-    );
-
-    const response = await fetch('/api/nfts/bulk', {
+    const response = await fetch('/api/nfts', {
       method: 'post',
-      body: filterNfts,
+      body: JSON.stringify({
+        filterNfts,
+      }),
       headers: { 'Content-Type': 'application/json' },
     });
-    // User.bulkCreate(filterOwned)
 
     if (response.ok) {
       console.log(response);

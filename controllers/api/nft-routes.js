@@ -60,15 +60,15 @@ router.get('/:id', (req, res) => {
 
 //add nft
 router.post('/', (req, res) => {
-  // This will make a new post
-  // Expects Title, body, user_id
-  Nft.bulkCreate(req)
-    // Nft.bulkCreate({
-    //   title: req.body.title,
-    //   description: req.body.description,
-    //   image_url: req.body.image_url,
-    //   // user_id: req.session.user_id,
-    // })
+  // This will make new nft rows
+  // Expects title, description, image_url
+  Nft.bulkCreate(
+    // title: req.body.title,
+    // description: req.body.description,
+    // image_url: req.body.image_url,
+    // user_id: req.session.user_id,
+    req.body.filterNfts
+  )
     .then((dbNftData) => {
       res.json(dbNftData);
     })
