@@ -8,7 +8,7 @@ const Comment = require('./Comment');
 // associations
 
 User.hasMany(Nft, {
-  as: 'nft',
+  as: 'nfts',
   foreignKey: 'owner',
 });
 
