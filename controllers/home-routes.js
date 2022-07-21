@@ -1,10 +1,13 @@
 const router = require('express').Router();
-const { User, Gallery, Nft, Comment } = require('../models');
+const { User, Nft, Comment } = require('../models');
 const sequelize = require('../config/connection');
 
 /* home view */
 router.get('/', (req, res) => {
-  res.render('home-main', { layout: 'home' });
+  res.render('home-main', {
+    layout: 'home',
+    loggedIn: req.session.loggedIn,
+  });
 });
 
 /* user registration view */
@@ -63,54 +66,54 @@ router.get('/dashboard/nft/', (req, res) => {
 //     });
 // });
 
-//serve up the single gallery page
-router.get('/viewgallery/:id', (req, res) => {
-  //we need to get all galleries
-  Gallery.findOne({
-    where: {
-      id: req.params.id,
-    },
-    attributes: ['id', 'body', 'user_id'],
-    include: [
-      {
-        model: User,
-        as: 'user',
-        attributes: ['username'],
-      },
-      {
-        model: Comment,
-        as: 'comments',
-        attributes: ['id', 'comment_text', 'user_id'],
-        include: [
-          {
-            model: User,
-            as: 'user',
-            attributes: ['username'],
-          },
-        ],
-      },
-    ],
-  })
-    .then((dbGalleryData) => {
-      //serialize data
-      if (!dbGalleryData) {
-        res.status(404).json({ message: 'No Galleries Available' });
-        return;
-      }
-      const gallery = dbGalleryData.get({ plain: true }); // serialize all the galleries
-      console.log(gallery);
-      const myGallery = gallery.user_id == req.session.user_id;
-      res.render('single-gallery', {
-        gallery,
-        loggedIn: req.session.loggedIn,
-        currentUser: myGallery,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+// //serve up the single gallery page
+// router.get('/viewgallery/:id', (req, res) => {
+//   //we need to get all galleries
+//   Gallery.findOne({
+//     where: {
+//       id: req.params.id,
+//     },
+//     attributes: ['id', 'body', 'user_id'],
+//     include: [
+//       {
+//         model: User,
+//         as: 'user',
+//         attributes: ['username'],
+//       },
+//       {
+//         model: Comment,
+//         as: 'comments',
+//         attributes: ['id', 'comment_text', 'user_id'],
+//         include: [
+//           {
+//             model: User,
+//             as: 'user',
+//             attributes: ['username'],
+//           },
+//         ],
+//       },
+//     ],
+//   })
+//     .then((dbGalleryData) => {
+//       //serialize data
+//       if (!dbGalleryData) {
+//         res.status(404).json({ message: 'No Galleries Available' });
+//         return;
+//       }
+//       const gallery = dbGalleryData.get({ plain: true }); // serialize all the galleries
+//       console.log(gallery);
+//       const myGallery = gallery.user_id == req.session.user_id;
+//       res.render('single-gallery', {
+//         gallery,
+//         loggedIn: req.session.loggedIn,
+//         currentUser: myGallery,
+//       });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 
 //serve up the login page
 router.get('/login', (req, res) => {

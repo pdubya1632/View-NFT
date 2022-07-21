@@ -48,7 +48,7 @@ async function signupFormHandler(event) {
       alert(response.statusText);
     }
     //then we send in a request to log into the webpage
-    const responseTwo = await fetch('/api/users/login', {
+    const responseTwo = await fetch('api/users/login', {
       method: 'post',
       body: JSON.stringify({
         email,

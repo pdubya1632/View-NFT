@@ -12,7 +12,7 @@ Nft.init(
       allowNull: false,
       primaryKey: true,
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -20,21 +20,30 @@ Nft.init(
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    image: {
+    image_url: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    collection_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'collection',
-        key: 'id',
-      },
+    for_sale: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
     },
-    user_id: {
+    floor_price: {
+      type: DataTypes.DECIMAL,
+      allowNull: true,
+    },
+    collection: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    creator: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    owner: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'collection',
+        model: 'user',
         key: 'id',
       },
     },
