@@ -10,6 +10,7 @@ Nft.init(
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      autoIncrement: true,
       primaryKey: true,
     },
     title: {
@@ -26,7 +27,7 @@ Nft.init(
     },
     for_sale: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      allowNull: true,
     },
     floor_price: {
       type: DataTypes.DECIMAL,

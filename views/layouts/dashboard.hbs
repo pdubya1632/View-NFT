@@ -31,39 +31,8 @@
       {{!-- </div> --}}
     </div>
 
-    {{!-- <script>
+   <script src="js/quicknode.js"></script>
 
-      const fetchNFTs = async (e) => {
-        console.log("fetching nfts");
-          const api_key = "A8A1Oo_UTB9IN5oNHfAc2tAxdR4UVwfM"
-          const baseURL = `https://eth-mainnet.alchemyapi.io/v2/${api_key}/getNFTs/`;
-          const address = e.value;
-          const requestOptions = {
-              method: 'GET'
-          };
-
-        console.log("fetching nfts by address")
-          const fetchURL = `${baseURL}?owner=${address}`;
-          const nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
-          const ownedNfts = nfts.ownedNfts;
-          const filterOwned = ownedNfts.map(item => {
-              const container = {};
-
-              container.title = item.title;
-              container.description = item.description;
-              container.url = item.media[0].gateway;
-
-              return container;
-          })
-      
-        if (nfts) {
-          console.log("nfts:", filterOwned);
-
-          {{!-- User.bulkCreate(filterOwned) --}}
-
-        }
-      }
-    </script> --}}
   </body>
 
 </html>
