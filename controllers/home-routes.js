@@ -87,7 +87,10 @@ router.get('/login', (req, res) => {
 
 /* dashboard view */
 router.get('/dashboard', (req, res) => {
-  res.render('dashboard-main', { layout: 'dashboard' });
+  res.render('dashboard-main', {
+    layout: 'dashboard',
+    userId: req.session.user_id,
+  });
 });
 
 router.get('/gallery', (req, res) => {
