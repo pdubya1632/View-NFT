@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Gallery, Nft, Comment } = require('../models');
+const { User, Nft, Comment } = require('../models');
 const sequelize = require('../config/connection');
 
 /* home view */
@@ -24,49 +24,12 @@ router.get('/dashboard/nft/', (req, res) => {
   res.render('nftDetail-main', { layout: 'dashboard' });
 });
 
-//home route server homepage
-// router.get('/', (req, res) => {
-//   //we need to get all galleries
-//   Gallery.findAll({
-//     attributes: ['id', 'body', 'user_id'],
-//     include: [
-//       {
-//         model: User,
-//         as: 'user',
-//         attributes: ['username'],
-//       },
-//       {
-//         model: Comment,
-//         as: 'comments',
-//         attributes: ['id', 'comment_text', 'user_id'],
-//       },
-//     ],
-//   })
-//     .then((dbGalleryData) => {
-//       //serialize data
-//       if (!dbGalleryData) {
-//         res.status(404).json({ message: 'No Galleries Available' });
-//         return;
-//       }
-//       const galleries = dbGalleryData.map((gallery) =>
-//         gallery.get({ plain: true })
-//       ); // serialize all the galleries
-//       console.log(galleries);
-//       res.render('home', {
-//         galleries,
-//         loggedIn: req.session.loggedIn,
-//       });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
+
 
 //serve up the single gallery page
-router.get('/viewgallery/:id', (req, res) => {
+router.get('/viewnft/:id', (req, res) => {
   //we need to get all galleries
-  Gallery.findOne({
+  Nft.findOne({
     where: {
       id: req.params.id,
     },

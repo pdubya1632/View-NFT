@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const { User, Gallery, Comment } = require("../../models");
+const { User, Nft, Comment } = require("../../models");
 //get all the comments
 router.get("/", (req, res) => {
   Comment.findAll({
-    attributes: ["id", "comment_text", "user_id", "gallery_id"],
+    attributes: ["id", "comment_text", "user_id",'nft_id'],
     include: [
       {
         model: User,
@@ -27,12 +27,13 @@ router.get("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "comment_text", "user_id", "gallery_id"],
+    attributes: ["id", "comment_text", "user_id",'nft_id'],
     include: [
       {
         model: User,
         as: "user",
         attributes: ["username"],
+
       },
     ],
   }) //include the galleries and comments of this user
@@ -55,7 +56,7 @@ router.post("/", (req, res) => {
   Comment.create({
     comment_text: req.body.comment_text,
     user_id: req.session.user_id,
-    gallery_id: req.body.gallery_id,
+    nft_id: req.body.nft_id,
   })
     .then((dbCommentData) => {
       res.json(dbCommentData);
@@ -71,7 +72,7 @@ router.put("/", (req, res) => {
 });
 //remove comment
 router.delete("/:id", (req, res) => {
-  Gallery.destroy({
+  Nft.destroy({
     where: {
       id: req.params.id,
     },

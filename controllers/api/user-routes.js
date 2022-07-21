@@ -1,19 +1,19 @@
 const router = require("express").Router();
-const{User,Comment,Gallery} = require("../../models");
+const{User,Comment,Nft} = require("../../models");
 //get all users
 router.get("/", (req, res) => {
     User.findAll({
       attributes: ["id", "username", "email", "password"], 
       include: [
         {
-          model: Gallery,
-          as: "galleries",
-          attributes: ["id", "title", "body"],
+          model: Nft,
+          as: "nfts",
+          attributes: ["name", "description", "image"],
         },
         {
           model: Comment,
           as: "comments",
-          attributes: ["id", "comment_text", "gallery_id"],
+          attributes: ["id", "comment_text", "user_id"],
         },
       ],
     }) //include the gallery and comments of this user
@@ -35,14 +35,14 @@ router.get("/", (req, res) => {
       attributes: ["id", "username", "email", "password"], 
       include: [
         {
-          model: Gallery,
-          as: "galleries",
-          attributes: ["id", "body"],
+          model: Nft,
+          as: "nfts",
+          attributes: ["name", "dexription", "image"],
         },
         {
           model: Comment,
           as: "comments",
-          attributes: ["id", "comment_text", "gallery_id"],
+          attributes: ["id", "comment_text", "user_id"],
         },
       ],
     }) //include the galleries and comments of this user
