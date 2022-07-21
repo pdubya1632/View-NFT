@@ -24,7 +24,7 @@ router.get('/password-reset', (req, res) => {
 /* nft detail dashboard view */
 /* route should be changed to /dashboard/nft/:id */
 router.get('/dashboard/nft/', (req, res) => {
-  res.render('nftDetail-main', { layout: 'dashboard' });
+  res.render('nftDetail-main', { layout: 'dashboard',loggedIn: req.session.loggedIn });
 });
 
 //serve up the single gallery page
