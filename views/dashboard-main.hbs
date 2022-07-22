@@ -136,7 +136,7 @@
       </div>
     </div>
 
-    <div>
+    <div id='addCollection'>
       <label class='block text-sm'>
         <span class='text-gray-700 dark:text-gray-400'>Address</span>
         <input
@@ -154,8 +154,20 @@
       >
         Add Collection
       </button>
-
     </div>
+
+    <div class='container my-12 mx-auto px-4 md:px-12'>
+      <div id='collectionGrid' class='flex flex-wrap -mx-1 lg:-mx-4'>
+
+      </div>
+    </div>
+    {{! <div>
+        <template x-if='nftData'>
+          <img :src='nftData.image_url' :alt='nftData.name' />
+          <h3 x-text='nftData.name'></h3>
+          <p x-text='nftData.description'></p>
+        </template>
+      </div> }}
 
   </div>
 </main>

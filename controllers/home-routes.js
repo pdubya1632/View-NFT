@@ -24,7 +24,10 @@ router.get('/password-reset', (req, res) => {
 /* nft detail dashboard view */
 /* route should be changed to /dashboard/nft/:id */
 router.get('/dashboard/nft/', (req, res) => {
-  res.render('nftDetail-main', { layout: 'dashboard',loggedIn: req.session.loggedIn });
+  res.render('nftDetail-main', {
+    layout: 'dashboard',
+    loggedIn: req.session.loggedIn,
+  });
 });
 
 //serve up the single gallery page
@@ -93,9 +96,17 @@ router.get('/dashboard', (req, res) => {
   });
 });
 
-router.get('/gallery', (req, res) => {
-  res.render('create-gallery', { loggedIn: req.session.loggedIn });
+router.get('/dashboard/collection/nft/:id', (req, res) => {
+  res.render('nftDetail-main', {
+    layout: 'dashboard',
+    userId: req.session.user_id,
+  });
 });
+
+// router.get('/gallery', (req, res) => {
+//   res.render('create-gallery', { loggedIn: req.session.loggedIn });
+// });
+
 //load the edit page
 router.get('/edit/:id', (req, res) => {
   //    gallery_id: req.galleryID,
@@ -104,4 +115,5 @@ router.get('/edit/:id', (req, res) => {
     gallery_id: req.params.id,
   });
 });
+
 module.exports = router;

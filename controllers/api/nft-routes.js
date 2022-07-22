@@ -28,13 +28,7 @@ router.get('/:id', (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: [
-      'id',
-      'title',
-      'description',
-      'image_url',
-      'user_id',
-    ],
+    attributes: ['id', 'title', 'description', 'image_url'],
     include: [
       {
         model: Comment,
