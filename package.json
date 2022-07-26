@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "server.js",
   "license": "MIT",
+  "engines": {
+    "node": "17.x"
+  },
   "scripts": {
     "start": "nodemon -r dotenv/config server.js"
   },
