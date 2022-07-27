@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Nft, Comment } = require('../../models');
+const { Nft, Comment } = require('../../models');
 
 //get all the Nfts
 router.get('/', (req, res) => {
@@ -54,15 +54,7 @@ router.get('/:id', (req, res) => {
 
 //add nft
 router.post('/', (req, res) => {
-  // This will make new nft rows
-  // Expects title, description, image_url
-  Nft.bulkCreate(
-    // title: req.body.title,
-    // description: req.body.description,
-    // image_url: req.body.image_url,
-    // user_id: req.session.user_id,
-    req.body.filterNfts
-  )
+  Nft.bulkCreate(req.body.filterNfts)
     .then((dbNftData) => {
       res.json(dbNftData);
     })
@@ -72,7 +64,7 @@ router.post('/', (req, res) => {
     });
 });
 
-//update post
+// update nft
 router.put('/:id', (req, res) => {
   console.log('The id is ', req.params.id);
   Nft.update(
@@ -100,7 +92,8 @@ router.put('/:id', (req, res) => {
       res.json(err);
     });
 });
-//remove post
+
+//remove nft
 router.delete('/:id', (req, res) => {
   Nft.destroy({
     where: {
@@ -121,4 +114,5 @@ router.delete('/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
+
 module.exports = router;
