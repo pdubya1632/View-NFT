@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NFT Collections Home Page</title>
+    <title>ViewNFT Home</title>
     <link rel="stylesheet" href="/css/output.css" />
     <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script> 
 </head>
@@ -13,13 +13,13 @@
         <div class="max-w-7xl mx-auto h-full">
             <div class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:w-full lg:pb-28 xl:pb-32 h-full">
     
-{{> home-header}}
+              {{> home-header}}
 
-    {{{body}}}
+              {{{body}}}
 
-{{!-- {{> home-footer}} --}}
+              {{!-- {{> home-footer}} --}}
 
-</div>
+            </div>
 
     {{#if loggedIn}}
       <script src='/js/logout.js'></script>
